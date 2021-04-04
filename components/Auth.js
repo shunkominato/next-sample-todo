@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Cookie from "universal-cookie";
 
 const cookie = new Cookie();
 
 const Auth = () => {
-  const router = useRouter
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
   console.log(password)
 
   const login = () => {
+    const options = { path: "/" };
     cookie.set('access_token', 'aaa', options);
-    router.push('/main-page');
+    router.push("/main-page");
   }
 
   const authUser = (e) => {
@@ -79,7 +80,7 @@ const Auth = () => {
               <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
             </svg>
           </span>
-          Sign in
+          {isLogin ? 'login' : 'createuser'}
         </button>
       </div>
     </form>
