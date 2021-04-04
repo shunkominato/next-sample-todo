@@ -18,6 +18,7 @@ const Auth = () => {
 
   const authUser = (e) => {
     e.preventDefault();
+    console.log(e);
     login();
   }
 
