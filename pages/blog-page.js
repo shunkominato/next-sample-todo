@@ -1,9 +1,12 @@
 import React from 'react'
 import Link from "next/link";
+import Layout from '../components/Layout';
+import { getAllPostsData } from '../lib/posts';
 
-const BlogPage = () => {
+const BlogPage = ({ posts }) => {
   return (
     <Layout title="Blog page">
+      <p>{posts.chartName}</p>
       <Link href="/main-page">
         <div className="flex cursor-pointer mt-12">
           <svg
@@ -25,6 +28,16 @@ const BlogPage = () => {
       </Link>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  const posts = await getAllPostsData()
+  console.log(posts)
+  return {
+    props: {
+      posts
+    },
+  };
 }
 
 export default BlogPage
